@@ -1,0 +1,53 @@
+hours , minutes = map(input().split,int())
+
+def Is_input_correct(hours,minutes):
+
+    output = "Введены недопустимые данные: "
+
+    if 0 > hours or hours > 23:
+        output += "Часы должны быть от 0 до 23."
+
+    if 0 > minutes or minutes > 59:
+        output += "Минуты должны быть от 0 до 59."
+
+    return (output)
+
+def daytime(hours,minutes):
+    if hours in range(0,6):
+        output = "ночи"
+
+    if hours in range(6,12):
+        output = "утра"
+
+    if hours in range(12,18):
+        output = "дня"
+
+    if hours > 18:
+        output = "вечера"
+
+    return output
+
+def find_wordform(hours_or_minutes,timeform):
+    if timeform == "минуты":
+  #подбор падежей
+        
+
+    if timeform == "часы":
+
+
+
+def main():
+
+    output = ""
+
+    if hours == 12 and minutes == 0:
+        return("полдень")
+
+    if hours == 0 and minutes == 0:
+        return ("полночь")
+
+
+
+
+if __name__ == "__main__":
+    main()
