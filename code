@@ -1,53 +1,65 @@
-hours , minutes = map(input().split,int())
+hours, minutes = map(int, input().split())
 
-def Is_input_correct(hours,minutes):
+def Is_input_correct(hours, minutes):
+    output = []
+    if not (0 <= hours <= 23):
+        output.append("Часы должны быть от 0 до 23.")
+    if not (0 <= minutes <= 59):
+        output.append("Минуты должны быть от 0 до 59.")
+    if output:
+        return "Введены недопустимые данные: " + " ".join(output)
+    else:
+        return ""
 
-    output = "Введены недопустимые данные: "
+def daytime(hours):
+    if 0 <= hours < 6:
+        return "ночи"
+    elif 6 <= hours < 12:
+        return "утра"
+    elif 12 <= hours < 18:
+        return "дня"
+    else:
+        return "вечера"
 
-    if 0 > hours or hours > 23:
-        output += "Часы должны быть от 0 до 23."
-
-    if 0 > minutes or minutes > 59:
-        output += "Минуты должны быть от 0 до 59."
-
-    return (output)
-
-def daytime(hours,minutes):
-    if hours in range(0,6):
-        output = "ночи"
-
-    if hours in range(6,12):
-        output = "утра"
-
-    if hours in range(12,18):
-        output = "дня"
-
-    if hours > 18:
-        output = "вечера"
-
-    return output
-
-def find_wordform(hours_or_minutes,timeform):
+def find_wordform(number, timeform):
     if timeform == "минуты":
-  #подбор падежей
-        
-
-    if timeform == "часы":
-
-
+        if 11 <= number % 100 <= 14:
+            return "минут"
+        elif number % 10 == 1:
+            return "минута"
+        elif 2 <= number % 10 <= 4:
+            return "минуты"
+        else:
+            return "минут"
+    elif timeform == "часы":
+        if 11 <= number % 100 <= 14:
+            return "часов"
+        elif number % 10 == 1:
+            return "час"
+        elif 2 <= number % 10 <= 4:
+            return "часа"
+        else:
+            return "часов"
 
 def main():
-
-    output = ""
-
-    if hours == 12 and minutes == 0:
-        return("полдень")
-
+    error = Is_input_correct(hours, minutes)
+    if error:
+        return error
     if hours == 0 and minutes == 0:
-        return ("полночь")
-
-
-
+        return "полночь"
+    elif hours == 12 and minutes == 0:
+        return "полдень"
+    hour_for_text = hours
+    if hours == 0:
+        hour_for_text = 12
+    elif hours > 12:
+        hour_for_text = hours - 12
+    if minutes == 0:
+        result = str(hour_for_text) + " " + find_wordform(hour_for_text, "часы") + " " + daytime(hours) + " ровно"
+    else:
+        result = (str(hour_for_text) + " " + find_wordform(hour_for_text, "часы") + " "
+                  + str(minutes) + " " + find_wordform(minutes, "минуты") + " " + daytime(hours))
+    return result
 
 if __name__ == "__main__":
-    main()
+    print(main())
