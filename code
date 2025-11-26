@@ -1,17 +1,25 @@
-hours, minutes = map(int, input().split())
+print("Введите часы и минуты натуральными числами от 0 до 24 для часов и от 0 до 60 для минут через один пробел")
+hours, minutes = input().split()
+
 
 def Is_input_correct(hours, minutes):
     output = []
-    if not (0 <= hours <= 23):
-        output.append("Часы должны быть от 0 до 23.")
-    if not (0 <= minutes <= 59):
-        output.append("Минуты должны быть от 0 до 59.")
+    if not(hours.isdigit()) or not(minutes.isdigit()):
+        output.append("Часы и минуты должны быть представлены натуральными числами")
+    if hours.isdigit():
+        if not (0 <= int(hours) <= 23):
+            output.append("Часы должны быть от 0 до 23.")
+    if minutes.isdigit():
+        if not (0 <= int(minutes) <= 59):
+            output.append("Минуты должны быть от 0 до 59.")
+
     if output:
         return "Введены недопустимые данные: " + " ".join(output)
     else:
         return ""
 
 def daytime(hours):
+    hours = int(hours)
     if 0 <= hours < 6:
         return "ночи"
     elif 6 <= hours < 12:
@@ -42,9 +50,9 @@ def find_wordform(number, timeform):
             return "часов"
 
 def main():
-    error = Is_input_correct(hours, minutes)
-    if error:
-        return error
+    if Is_input_correct(hours, minutes):
+        return Is_input_correct(hours, minutes)
+
     if hours == 0 and minutes == 0:
         return "полночь"
     elif hours == 12 and minutes == 0:
@@ -52,13 +60,12 @@ def main():
     hour_for_text = hours
     if hours == 0:
         hour_for_text = 12
-    elif hours > 12:
+    elif int(hours) > 12:
         hour_for_text = hours - 12
     if minutes == 0:
-        result = str(hour_for_text) + " " + find_wordform(hour_for_text, "часы") + " " + daytime(hours) + " ровно"
+        result = str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + daytime(hours) + " ровно"
     else:
-        result = (str(hour_for_text) + " " + find_wordform(hour_for_text, "часы") + " "
-                  + str(minutes) + " " + find_wordform(minutes, "минуты") + " " + daytime(hours))
+        result = (str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + str(minutes) + " " + find_wordform(int(minutes), "минуты") + " " + daytime(hours))
     return result
 
 if __name__ == "__main__":
