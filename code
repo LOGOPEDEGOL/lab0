@@ -60,11 +60,11 @@ def main():
         return "полночь"
     if int(hours) == 12 and int(minutes) == 00:
         return "полдень"
-    hour_for_text = hours
-    if hours == 0:
+    hour_for_text = int(hours)
+    if int(hours) == 0:
         hour_for_text = 12
     elif int(hours) > 12:
-        hour_for_text = hours - 12
+        hour_for_text = int(hours) - 12
     if int(minutes) == 0:
         result = str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + daytime(hours) + " ровно"
     else:
