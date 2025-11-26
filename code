@@ -68,7 +68,7 @@ def main():
     if int(minutes) == 0:
         result = str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + daytime(hours) + " ровно"
     else:
-        result = (str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + str(minutes) + " " + find_wordform(int(minutes), "минуты") + " " + daytime(hours))
+        result = (str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + str(int(minutes)) + " " + find_wordform(int(minutes), "минуты") + " " + daytime(hours))
     return result
 
 if __name__ == "__main__":
