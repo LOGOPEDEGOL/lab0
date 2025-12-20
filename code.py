@@ -1,5 +1,4 @@
-print("Введите часы и минуты натуральными числами от 0 до 24 для часов и от 0 до 60 для минут через один пробел")
-vvod = input()
+inpt = input("Введите часы и минуты натуральными числами от 0 до 24 для часов и от 0 до 60 для минут через один пробел")
 
 def Is_input_correct(hours, minutes):
     output = []
@@ -49,17 +48,17 @@ def find_wordform(number, timeform):
             return "часов"
 
 def main():
-    if vvod.count(" ") != 1:
+    if inpt.count(" ") != 1:
         return "Часы и минуты должны быть представлены натуральными числами в формате число пробел число"
 
-    hours, minutes = vvod.split()
+    hours, minutes = inpt.split()
     if Is_input_correct(hours, minutes):
         return Is_input_correct(hours, minutes)
-    int_hours,int_minutes = int(hours),int(minutes)
+    int_hours, int_minutes = int(hours), int(minutes)
 
     if int_hours == 0 and int_minutes == 0:
         return "полночь"
-    if int_hours == 12 and int_minutes == 00:
+    if int_hours == 12 and int_minutes == 0:
         return "полдень"
     hour_for_text = int_hours
     if int_hours == 0:
@@ -69,7 +68,13 @@ def main():
     if int_minutes == 0:
         result = str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + daytime(hours) + " ровно"
     else:
-        result = (str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + str(int_minutes) + " " + find_wordform(int_minutes, "минуты") + " " + daytime(hours))
+        result = (
+            str(hour_for_text) + " " +
+            find_wordform(int(hour_for_text), "часы") + " " +
+            str(int_minutes) + " " +
+            find_wordform(int_minutes, "минуты") + " " +
+            daytime(hours)
+        )
     return result
 
 if __name__ == "__main__":
