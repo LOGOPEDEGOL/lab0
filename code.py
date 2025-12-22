@@ -1,15 +1,21 @@
-inpt = input("Введите часы и минуты натуральными числами от 0 до 24 для часов и от 0 до 60 для минут через один пробел")
+print("Введите часы и минуты натуральными числами от 0 до 24 для часов"
+             " и от 0 до 60 для минут через один пробел")
+inpt = input().split()
 
-def Is_input_correct(hours, minutes):
+def Is_input_correct(inpt):
     output = []
-    if not(hours.isdigit()) or not(minutes.isdigit()):
-        output.append("Часы и минуты должны быть представлены натуральными числами")
-    if hours.isdigit():
-        if not (0 <= int(hours) <= 23):
-            output.append("Часы должны быть от 0 до 23.")
-    if minutes.isdigit():
-        if not (0 <= int(minutes) <= 59):
-            output.append("Минуты должны быть от 0 до 59.")
+    if len(inpt) != 2:
+        output.append("Представьте время в формате часы <пробел> минуты")
+    else:
+        hours, minutes = inpt
+        if not(hours.isdigit()) or not(minutes.isdigit()):
+            output.append("Часы и минуты должны быть представлены натуральными числами")
+        if hours.isdigit():
+            if not (0 <= int(hours) <= 23):
+                output.append("Часы должны быть от 0 до 23.")
+        if minutes.isdigit():
+            if not (0 <= int(minutes) <= 59):
+                output.append("Минуты должны быть от 0 до 59.")
 
     if output:
         return "Введены недопустимые данные: " + " ".join(output)
@@ -48,12 +54,11 @@ def find_wordform(number, timeform):
             return "часов"
 
 def main():
-    if inpt.count(" ") != 1:
-        return "Часы и минуты должны быть представлены натуральными числами в формате число пробел число"
 
-    hours, minutes = inpt.split()
-    if Is_input_correct(hours, minutes):
-        return Is_input_correct(hours, minutes)
+    if Is_input_correct(inpt):
+        return Is_input_correct(inpt)
+    else:
+        hours, minutes = inpt
     int_hours, int_minutes = int(hours), int(minutes)
 
     if int_hours == 0 and int_minutes == 0:
@@ -66,7 +71,8 @@ def main():
     elif int_hours > 12:
         hour_for_text = int_hours - 12
     if int_minutes == 0:
-        result = str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " " + daytime(hours) + " ровно"
+        result = (str(hour_for_text) + " " + find_wordform(int(hour_for_text), "часы") + " "
+                  + daytime(hours) + " ровно")
     else:
         result = (
             str(hour_for_text) + " " +
