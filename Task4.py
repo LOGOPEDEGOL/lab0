@@ -28,6 +28,26 @@ def Is_input_correct(vvod1, vvod2):
     else:
         return ""
 
+def find_wordform(number, timeform):
+    if timeform == "минуты":
+        if 11 <= number % 100 <= 14:
+            return "минут"
+        elif number % 10 == 1:
+            return "минута"
+        elif 2 <= number % 10 <= 4:
+            return "минуты"
+        else:
+            return "минут"
+    elif timeform == "часы":
+        if 11 <= number % 100 <= 14:
+            return "часов"
+        elif number % 10 == 1:
+            return "час"
+        elif 2 <= number % 10 <= 4:
+            return "часа"
+        else:
+            return "часов"
+
 
 error = Is_input_correct(vvod1, vvod2)
 
@@ -48,4 +68,4 @@ else:
     res_hours = diff // 60
     res_minutes = diff % 60
 
-    print("Разница:"+ str(res_hours) +  "часов" + str(res_minutes) + "минут")
+    print("Разница: " + str(res_hours) + " " + find_wordform(res_hours, "часы") + " " + str(res_minutes) + " " + find_wordform(res_minutes, "минуты"))
