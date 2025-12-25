@@ -7,3 +7,5 @@ def selection_sort(s):
     return s
 
 print(selection_sort(s))
+
+#ЭТО НЕ ГОТОВЫЙ КОД, ЭТО ОТДЕЛЬНЫЙ КОД ТОЛЬКО С ПРИМЕРОМ РАБОТЫ СОРТИРОВКИ ВЫБОРОМ
