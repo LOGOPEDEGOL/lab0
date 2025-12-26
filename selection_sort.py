@@ -1,5 +1,6 @@
 import random
 s = [random.randint(0, 99) for _ in range(10)]
+print(s)
 
 def selection_sort(s):
     for i in range(len(s)-1):
